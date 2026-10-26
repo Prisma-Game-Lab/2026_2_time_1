@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2418c554eb3474cb22714b6cb32258, type: 3}
+  m_Name: CombinationLock
+  m_EditorClassIdentifier: 
+  itemName: CombinationLock
+  sprite: {fileID: 21300000, guid: e3c892ac7d5375b40a37cf1b47f3b468, type: 3}
+  inspectView: {fileID: 4856516070793725193, guid: fb062b544e37a7c4faa87e16af51a44a, type: 3}
