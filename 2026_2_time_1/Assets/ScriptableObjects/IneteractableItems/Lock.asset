@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8079151ce90324cb6b994503190551, type: 3}
+  m_Name: Lock
+  m_EditorClassIdentifier: 
+  itemName: Lock
+  sprite: {fileID: 21300000, guid: 8835d5440faee8c409e7a3b8a8f4bcfc, type: 3}
+  requiredItem: {fileID: 11400000, guid: fa459dfaf979c3544bccc60a15682e36, type: 2}
