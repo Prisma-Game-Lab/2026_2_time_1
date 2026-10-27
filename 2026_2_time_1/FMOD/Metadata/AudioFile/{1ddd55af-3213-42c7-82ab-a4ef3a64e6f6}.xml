@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1ddd55af-3213-42c7-82ab-a4ef3a64e6f6}">
+		<property name="assetPath">
+			<value>Music/vgm omg vgm undertale like.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>129.1304375</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e74e11b6-5cc4-4af3-aff0-3144f6e63f34}</destination>
+		</relationship>
+	</object>
+</objects>
