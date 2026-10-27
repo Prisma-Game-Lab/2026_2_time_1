@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Memories/Memory1.unity
     guid: db8657f17b135bd4e93b735964ec9d3c
+  - enabled: 1
+    path: Assets/Scenes/Eastereggnaoconfirmadodabungie.unity
+    guid: 0b9fa3d88e3e0764aaa68f3fb17ed30c
+  - enabled: 1
+    path: Assets/Scenes/TesteDoMudaCena.unity
+    guid: 557d96d3037613e4ea28b79c3ca7ee74
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cf0a81393ad3ba24697e07afbc801266, type: 3}
