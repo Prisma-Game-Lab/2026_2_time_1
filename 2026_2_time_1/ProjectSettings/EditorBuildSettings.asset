@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Memories/Memory1.unity
     guid: db8657f17b135bd4e93b735964ec9d3c
   - enabled: 1
+    path: Assets/Scenes/RECEBA.unity
+    guid: c8eea88ee6c209343afffb9c4291fff4
+  - enabled: 1
+    path: Assets/Scenes/RECEBA 1.unity
+    guid: 3bc8228ec9bdca54b960a41e14d9be51
+  - enabled: 1
     path: Assets/Scenes/Eastereggnaoconfirmadodabungie.unity
     guid: 0b9fa3d88e3e0764aaa68f3fb17ed30c
   - enabled: 1

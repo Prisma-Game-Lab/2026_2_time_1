@@ -395,6 +395,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sequenciaCorreta: 0100000002000000030000000400000005000000
   _objetoParaAparecer: {fileID: 469436056}
+  _aoResolver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &438731678
 Transform:
   m_ObjectHideFlags: 0
@@ -548,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c97e983af421740ab18194db9fb88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneName: Eastereggnaoconfirmadodabungie
+  _sceneName: RECEBA
   _usarFade: 1
   _fadeAnimator: {fileID: 0}
   _duracaoFade: 0.5
