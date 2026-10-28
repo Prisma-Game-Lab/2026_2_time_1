@@ -1,0 +1,2 @@
+# Preserve Unix line endings for macOS metadata
+*.plist text eol=lf
