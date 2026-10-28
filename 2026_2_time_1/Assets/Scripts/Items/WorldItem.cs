@@ -22,6 +22,12 @@ public class WorldItem : MonoBehaviour
 
     private void Awake()
     {
+        if (item is CollectibleItem collectible && InventoryData.WasCollected(collectible, gameObject.scene))
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         ApplySprite();
     }
 
@@ -33,7 +39,6 @@ public class WorldItem : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    //
     private void OnValidate()
     {
         UnityEditor.EditorApplication.delayCall += () =>
@@ -43,7 +48,6 @@ public class WorldItem : MonoBehaviour
         };
     }
 #endif
-
     public void Interact()
     {
         if (item == null)
@@ -59,7 +63,6 @@ public class WorldItem : MonoBehaviour
     {
         return item != null && usedItem != null && item.OnItemUsed(usedItem, this);
     }
-
     private void ApplySprite()
     {
         if (item != null && item.Sprite != null && SpriteRenderer.sprite != item.Sprite)
