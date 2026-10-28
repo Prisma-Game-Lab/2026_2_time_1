@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class GameManager : MonoBehaviour
 {
     private class FrozenScene
@@ -15,6 +14,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     private readonly Stack<FrozenScene> frozenScenes = new Stack<FrozenScene>();
+    private readonly List<string> memoryScenes = new List<string>();
 
     public bool IsTransitioning { get; private set; }
     public bool IsInMemory => frozenScenes.Count > 0;
@@ -40,11 +40,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
     private void OnDestroy()
     {
         if (Instance == this)
             Instance = null;
+    }
+
+    public bool IsMemoryScene(string sceneName)
+    {
+        return memoryScenes.Contains(sceneName);
     }
 
     public void LoadMemoryScene(string sceneName)
@@ -76,7 +80,7 @@ public class GameManager : MonoBehaviour
             frozen.DisabledRoots.Add(root);
         }
         frozenScenes.Push(frozen);
-
+        memoryScenes.Add(sceneName);
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
 
@@ -91,6 +95,7 @@ public class GameManager : MonoBehaviour
         Scene memoryScene = SceneManager.GetActiveScene();
         string memoryName = memoryScene.name;
         yield return SceneManager.UnloadSceneAsync(memoryScene);
+        memoryScenes.Remove(memoryName);
 
         FrozenScene frozen = frozenScenes.Pop();
         foreach (GameObject root in frozen.DisabledRoots)
