@@ -23,5 +23,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TesteDoMudaCena.unity
     guid: 557d96d3037613e4ea28b79c3ca7ee74
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 9dc80805777f48942bd1437d8d1dc0c7
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 1d786861f42573b4583feef233acd93d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cf0a81393ad3ba24697e07afbc801266, type: 3}
