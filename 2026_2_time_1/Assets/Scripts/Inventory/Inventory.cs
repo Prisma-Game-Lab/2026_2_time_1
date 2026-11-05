@@ -96,7 +96,22 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         if (toggleAction.WasPressedThisFrame())
-            SetOpen(!IsOpen);
+            Toggle();
+    }
+
+    public void Toggle()
+    {
+        SetOpen(!IsOpen);
+    }
+
+    public void Show()
+    {
+        SetOpen(true);
+    }
+
+    public void Hide()
+    {
+        SetOpen(false);
     }
 
     public void SetOpen(bool open)

@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMOD.Studio;
 using FMODUnity;
 
-
-public class AudioManager : MonoBehaviour
+public static class AudioManager
 {
+    public static void PlayOneShot(EventReference e, Vector3 position = default)
+        => RuntimeManager.PlayOneShot(e, position);
 
-    public static AudioManager instance { get; private set; }
-
-    private void Awake()
+    public static EventInstance Start(EventReference e)
     {
-        if (instance!= null)
-        {
-            Debug.LogError("Found more than one Audio Manager in the scene");
-        }
-        instance = this;
+        EventInstance instance = RuntimeManager.CreateInstance(e);
+        instance.start();
+        return instance;
     }
 
- public void PlayOneShot(EventReference sound)
+    public static void Stop(EventInstance instance, bool fade = true)
     {
-        RuntimeManager.PlayOneShot(sound);
+        instance.stop(fade ? FMOD.Studio.STOP_MODE.ALLOWFADEOUT : FMOD.Studio.STOP_MODE.IMMEDIATE);
+        instance.release();
     }
+    public static void SetGlobalParameter(string name, float value)
+        => RuntimeManager.StudioSystem.setParameterByName(name, value);
 }
-
