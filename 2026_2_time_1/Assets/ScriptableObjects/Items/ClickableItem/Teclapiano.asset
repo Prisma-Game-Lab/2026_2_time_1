@@ -17,8 +17,8 @@ MonoBehaviour:
   soundType: 1
   clickedObjectSound:
     Guid:
-      Data1: 2090005303
-      Data2: 1140799224
-      Data3: 1794989738
-      Data4: -1407165357
+      Data1: 1970558963
+      Data2: 1161215137
+      Data3: -1769573492
+      Data4: 1389032490
     Path: event:/Piano

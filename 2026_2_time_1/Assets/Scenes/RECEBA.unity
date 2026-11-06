@@ -2317,10 +2317,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1047683773
-      Data2: 1234129861
-      Data3: 1232312473
-      Data4: -414791534
+      Data1: 826329118
+      Data2: 1091459657
+      Data3: -317170764
+      Data4: 301833551
     Path: event:/Trilha
   Event: 
   EventPlayTrigger: 1

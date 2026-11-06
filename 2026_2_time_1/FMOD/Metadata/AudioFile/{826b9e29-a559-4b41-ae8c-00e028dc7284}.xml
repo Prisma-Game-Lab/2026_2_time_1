@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{826b9e29-a559-4b41-ae8c-00e028dc7284}">
+		<property name="assetPath">
+			<value>Music/PRISMALOOP.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>103.05011337868481</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{705b259e-9413-4223-9c88-ca3f884d2e8c}</destination>
+		</relationship>
+	</object>
+</objects>
