@@ -406,7 +406,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Ambience
-  - Music
+  - MX
   - Piano
   - SFX
   BanksToLoad: []

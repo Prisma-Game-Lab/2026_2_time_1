@@ -16,10 +16,10 @@ public class AudioManager : MonoBehaviour
     [Range(0, 1)]
     public float SFXVolume = 1;
 
-    // private Bus masterBus;
-    // private Bus musicBus;
-    // private Bus ambienceBus;
-    // private Bus sfxBus;
+    private Bus masterBus;
+    private Bus musicBus;
+    private Bus ambienceBus;
+    private Bus sfxBus;
 
     private List<EventInstance> eventInstances;
     private List<StudioEventEmitter> eventEmitters;
@@ -40,37 +40,37 @@ public class AudioManager : MonoBehaviour
         eventInstances = new List<EventInstance>();
         eventEmitters = new List<StudioEventEmitter>();
 
-        // masterBus = RuntimeManager.GetBus("bus:/");
-        // musicBus = RuntimeManager.GetBus("bus:/Music");
-        // ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
-        // sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        masterBus = RuntimeManager.GetBus("bus:/");
+        musicBus = RuntimeManager.GetBus("bus:/MX");
+        ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
+        sfxBus = RuntimeManager.GetBus("bus:/SFX");
     }
 
-    // private void Start()
-    // {
-    //     InitializeAmbience(FMODEvents.instance.ambience);
-    //     InitializeMusic(FMODEvents.instance.music);
-    // }
+    private void Start()
+    {
+        InitializeAmbience(FMODEvents.instance.ambience);
+        InitializeMusic(FMODEvents.instance.music);
+    }
 
-    // private void Update()
-    // {
-    //     masterBus.setVolume(masterVolume);
-    //     musicBus.setVolume(musicVolume);
-    //     ambienceBus.setVolume(ambienceVolume);
-    //     sfxBus.setVolume(SFXVolume);
-    // }
+    private void Update()
+    {
+        masterBus.setVolume(masterVolume);
+        musicBus.setVolume(musicVolume);
+        ambienceBus.setVolume(ambienceVolume);
+        sfxBus.setVolume(SFXVolume);
+    }
 
-    // private void InitializeAmbience(EventReference ambienceEventReference)
-    // {
-    //     ambienceEventInstance = CreateInstance(ambienceEventReference);
-    //     ambienceEventInstance.start();
-    // }
+    private void InitializeAmbience(EventReference ambienceEventReference)
+    {
+        ambienceEventInstance = CreateInstance(ambienceEventReference);
+        ambienceEventInstance.start();
+    }
 
-    // private void InitializeMusic(EventReference musicEventReference)
-    // {
-    //     musicEventInstance = CreateInstance(musicEventReference);
-    //     musicEventInstance.start();
-    // }
+    private void InitializeMusic(EventReference musicEventReference)
+    {
+        musicEventInstance = CreateInstance(musicEventReference);
+        musicEventInstance.start();
+    }
 
     // public void SetAmbienceParameter(string parameterName, float parameterValue)
     // {

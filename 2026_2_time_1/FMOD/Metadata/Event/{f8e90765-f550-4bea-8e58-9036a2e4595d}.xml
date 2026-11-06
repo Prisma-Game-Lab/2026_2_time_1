@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{f8e90765-f550-4bea-8e58-9036a2e4595d}">
 		<property name="name">
-			<value>ToggleItem</value>
+			<value>SFX_ToggleItem</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>

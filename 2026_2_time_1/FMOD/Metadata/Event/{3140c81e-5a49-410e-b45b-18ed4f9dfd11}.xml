@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{3140c81e-5a49-410e-b45b-18ed4f9dfd11}">
 		<property name="name">
-			<value>Trilha</value>
+			<value>MX_Trilha</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -53,7 +53,7 @@
 			<destination>{51c6dd86-7825-42f0-ba46-fec2756e47dc}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{71a3ebbc-8834-42db-8151-3ff393100daa}</destination>
+			<destination>{974efa95-56e8-4645-8294-bf31e7277d7e}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{c62e8d6b-b3ce-429d-9d09-ed1c610df756}" />

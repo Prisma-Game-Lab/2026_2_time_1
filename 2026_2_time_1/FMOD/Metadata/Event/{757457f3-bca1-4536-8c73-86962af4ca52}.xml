@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{757457f3-bca1-4536-8c73-86962af4ca52}">
 		<property name="name">
-			<value>Piano</value>
+			<value>SFX_Piano</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -68,7 +68,7 @@
 			<destination>{f145436e-4fd0-40cb-9725-d33a7896c82a}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{71a3ebbc-8834-42db-8151-3ff393100daa}</destination>
+			<destination>{8576f082-ce8d-4499-bbe4-f91cb6e6bfd7}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{b999e37c-ef46-4368-a05d-3886b7e1c632}" />
