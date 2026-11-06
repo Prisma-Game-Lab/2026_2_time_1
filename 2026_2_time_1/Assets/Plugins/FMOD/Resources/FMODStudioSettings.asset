@@ -380,7 +380,7 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 0
   HasPlatforms: 0
-  sourceProjectPath: FMOD/FMOD.fspro
+  sourceProjectPath: FMOD/Sessao_FMOD_Prisma.fspro
   sourceBankPath: FMOD/Desktop
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
@@ -407,6 +407,8 @@ MonoBehaviour:
   Banks:
   - Desktop/Ambience
   - Desktop/SFX
+  - Music
+  - Piano
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

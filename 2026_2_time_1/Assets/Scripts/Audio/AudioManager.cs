@@ -117,8 +117,49 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+//parametro de nota para piano
+
+public void PlayPianoNote(
+    EventReference pianoEvent,
+    Vector3 position,
+    int note)
+{
+    if (pianoEvent.IsNull)
     {
-        CleanUp();
+        Debug.LogError("Piano EventReference is empty.");
+        return;
     }
+
+    var instance = RuntimeManager.CreateInstance(pianoEvent);
+
+    if (!instance.isValid())
+    {
+        Debug.LogError(
+            $"FMOD failed to create piano event: {pianoEvent.Path}"
+        );
+        return;
+    }
+
+    FMOD.RESULT parameterResult =
+        instance.setParameterByName("Note", note);
+
+    if (parameterResult != FMOD.RESULT.OK)
+    {
+        Debug.LogError($"Failed to set Note parameter: {parameterResult}");
+        instance.release();
+        return;
+    }
+
+    instance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
+
+    FMOD.RESULT startResult = instance.start();
+
+    if (startResult != FMOD.RESULT.OK)
+    {
+        Debug.LogError($"Failed to start piano event: {startResult}");
+    }
+
+    instance.release();
+}
+
 }

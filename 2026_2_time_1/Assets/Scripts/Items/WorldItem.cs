@@ -84,4 +84,6 @@ public class WorldItem : MonoBehaviour
         if (box.size != size)
             box.size = size;
     }
+
+    
 }

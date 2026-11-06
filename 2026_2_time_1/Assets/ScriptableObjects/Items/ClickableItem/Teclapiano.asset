@@ -14,3 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Teclapiano
   sprite: {fileID: 21300000, guid: d78fa396c16a8874d9f21f40b32791b1, type: 3}
+  soundType: 1
+  clickedObjectSound:
+    Guid:
+      Data1: 2090005303
+      Data2: 1140799224
+      Data3: 1794989738
+      Data4: -1407165357
+    Path: event:/Piano
