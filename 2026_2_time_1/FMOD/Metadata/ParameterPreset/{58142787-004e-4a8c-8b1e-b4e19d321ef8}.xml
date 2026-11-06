@@ -5,7 +5,7 @@
 			<value>Note</value>
 		</property>
 		<relationship name="folder">
-			<destination>{4503829d-fd98-40d4-9254-c45def595a69}</destination>
+			<destination>{a6d14fb9-af89-4703-a7af-e6dbf7189838}</destination>
 		</relationship>
 		<relationship name="parameter">
 			<destination>{93adc801-9a6a-42f9-8c5c-05a537f47d1b}</destination>
@@ -15,11 +15,14 @@
 		<property name="parameterType">
 			<value>1</value>
 		</property>
+		<property name="minimum">
+			<value>60</value>
+		</property>
 		<property name="maximum">
-			<value>128</value>
+			<value>73</value>
 		</property>
 		<property name="initialValue">
-			<value>0</value>
+			<value>60</value>
 		</property>
 	</object>
 </objects>
