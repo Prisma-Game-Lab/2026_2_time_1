@@ -31,11 +31,16 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        // Se já existe um AudioManager (o persistente), destrói esta cópia
+        if (instance != null && instance != this)
         {
-            Debug.LogError("Found more than one Audio Manager in the scene.");
+            Debug.Log("AudioManager duplicado destruído (esperado ao voltar para a cena inicial).");
+            Destroy(gameObject);
+            return;
         }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
 
         eventInstances = new List<EventInstance>();
         eventEmitters = new List<StudioEventEmitter>();
@@ -48,16 +53,29 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        // Cópias destruídas no Awake não devem iniciar música
+        if (instance != this) return;
+
         InitializeAmbience(FMODEvents.instance.ambience);
         InitializeMusic(FMODEvents.instance.music);
     }
 
     private void Update()
     {
+        // Cópia destruída no Awake não tem buses inicializados
+        if (instance != this) return;
+
         masterBus.setVolume(masterVolume);
         musicBus.setVolume(musicVolume);
         ambienceBus.setVolume(ambienceVolume);
         sfxBus.setVolume(SFXVolume);
+    }
+
+    private void OnDestroy()
+    {
+        // Só o AudioManager original faz a limpeza
+        if (instance == this)
+            CleanUp();
     }
 
     private void InitializeAmbience(EventReference ambienceEventReference)
@@ -110,56 +128,58 @@ public class AudioManager : MonoBehaviour
             eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             eventInstance.release();
         }
+        eventInstances.Clear();
+
         // stop all of the event emitters, because if we don't they may hang around in other scenes
         foreach (StudioEventEmitter emitter in eventEmitters)
         {
-            emitter.Stop();
+            if (emitter != null)
+                emitter.Stop();
         }
+        eventEmitters.Clear();
     }
 
-//parametro de nota para piano
-
-public void PlayPianoNote(
-    EventReference pianoEvent,
-    Vector3 position,
-    int note)
-{
-    if (pianoEvent.IsNull)
+    // parametro de nota para piano
+    public void PlayPianoNote(
+        EventReference pianoEvent,
+        Vector3 position,
+        int note)
     {
-        Debug.LogError("Piano EventReference is empty.");
-        return;
+        if (pianoEvent.IsNull)
+        {
+            Debug.LogError("Piano EventReference is empty.");
+            return;
+        }
+
+        var pianoInstance = RuntimeManager.CreateInstance(pianoEvent);
+
+        if (!pianoInstance.isValid())
+        {
+            Debug.LogError(
+                $"FMOD failed to create piano event: {pianoEvent.Path}"
+            );
+            return;
+        }
+
+        FMOD.RESULT parameterResult =
+            pianoInstance.setParameterByName("Note", note);
+
+        if (parameterResult != FMOD.RESULT.OK)
+        {
+            Debug.LogError($"Failed to set Note parameter: {parameterResult}");
+            pianoInstance.release();
+            return;
+        }
+
+        pianoInstance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
+
+        FMOD.RESULT startResult = pianoInstance.start();
+
+        if (startResult != FMOD.RESULT.OK)
+        {
+            Debug.LogError($"Failed to start piano event: {startResult}");
+        }
+
+        pianoInstance.release();
     }
-
-    var instance = RuntimeManager.CreateInstance(pianoEvent);
-
-    if (!instance.isValid())
-    {
-        Debug.LogError(
-            $"FMOD failed to create piano event: {pianoEvent.Path}"
-        );
-        return;
-    }
-
-    FMOD.RESULT parameterResult =
-        instance.setParameterByName("Note", note);
-
-    if (parameterResult != FMOD.RESULT.OK)
-    {
-        Debug.LogError($"Failed to set Note parameter: {parameterResult}");
-        instance.release();
-        return;
-    }
-
-    instance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
-
-    FMOD.RESULT startResult = instance.start();
-
-    if (startResult != FMOD.RESULT.OK)
-    {
-        Debug.LogError($"Failed to start piano event: {startResult}");
-    }
-
-    instance.release();
-}
-
 }
