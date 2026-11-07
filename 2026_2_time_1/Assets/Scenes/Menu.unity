@@ -1556,8 +1556,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000017166, y: -105}
-  m_SizeDelta: {x: 142.66, y: 50}
+  m_AnchoredPosition: {x: -0.0000038147, y: -112}
+  m_SizeDelta: {x: 391.457, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1852671168
 MonoBehaviour:
@@ -1579,7 +1579,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Title Text
+  m_text: pizza banana nevada s2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c2c91e083c0eda4bb092d0ee110a347, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2c2c91e083c0eda4bb092d0ee110a347, type: 2}
