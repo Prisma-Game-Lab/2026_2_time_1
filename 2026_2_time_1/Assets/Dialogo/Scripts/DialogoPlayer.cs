@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
-using System;
+
 
 //CONTROLA O DIÁLOGO
 //COLOQUE EM UM OBJETO PARA CONFIGURAR O DIALOGO

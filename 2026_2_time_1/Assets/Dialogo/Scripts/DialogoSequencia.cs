@@ -1,9 +1,10 @@
 
 using UnityEngine;
 
-//NÃO MODIFICAR
 //DEFINE UMA SEQUÊNCIA DE DIÁLOGO
-
+// ATENÇÃO: os campos com [SerializeField] são salvos nos assets pelo NOME.
+// Renomear um deles faz os diálogos já escritos sumirem do Inspector.
+// Se precisar renomear, use [FormerlySerializedAs("nomeAntigo")] (using UnityEngine.Serialization).
 [CreateAssetMenu(
     fileName = "Dialogo_Novo",
     menuName = "Dialogo/Sequência de diálogo"
