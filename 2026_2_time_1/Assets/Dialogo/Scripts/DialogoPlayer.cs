@@ -25,9 +25,6 @@ public class DialogoPlayer : MonoBehaviour
     [Header("Input")]
     [SerializeField] private InputActionAsset _inputActions;
 
-    [Header("Teste (só para o protótipo)")]
-    [SerializeField] private DialogoSequencia _dialogoTeste;
-
     private DialogoSequencia _dialogoAtual;
     private int _linhaIndice;
     private InputAction _clickAction;
@@ -73,13 +70,8 @@ public class DialogoPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            DialogoIniciar(_dialogoTeste);
-        }
-
         // Ignora o clique do frame em que o diálogo abriu: ele já foi usado para abrir
-        else if (_clickAction.WasPressedThisFrame() && _dialogoAtual != null && !MudouNesteFrame)
+        if (_clickAction.WasPressedThisFrame() && _dialogoAtual != null && !MudouNesteFrame)
         {
             ProximaLinha();
         }
