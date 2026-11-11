@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
+
+
 
 
 //CONTROLA O DIÁLOGO
@@ -11,17 +14,38 @@ public class DialogoPlayer : MonoBehaviour
     [SerializeField] private GameObject _caixaDoDialogo;
     [SerializeField] private TMP_Text _personagem;
     [SerializeField] private TMP_Text _formatoDoTexto;
-
-    [Header("Teste (só para o protótipo)")]
+    
+    [Header("Input")]
+    [SerializeField] private InputActionAsset _inputActions;
+    
+    [Header("Teste")]
     [SerializeField] private DialogoSequencia _dialogoTeste;
-
+    
     private DialogoSequencia _dialogoAtual;
     private int _linhaIndice;
+    private InputAction _clickAction;
+    
+    
 
     private void Awake()
     {
         _caixaDoDialogo.SetActive(false);
+        
+        if (_inputActions == null)
+        {
+            Debug.LogError("Input actions field missing",this);
+            enabled = false;
+            return;
+        }
+        
+        _clickAction = _inputActions.FindAction("Player/Click", throwIfNotFound: true);
     }
+
+     private void OnEnable()
+    {
+        _clickAction.Enable();
+    }
+
 
     private void Update()
     {
@@ -30,7 +54,7 @@ public class DialogoPlayer : MonoBehaviour
             DialogoIniciar(_dialogoTeste);
         }
 
-        else if (Input.GetKeyDown(KeyCode.Space) && _dialogoAtual != null)
+        else if (_clickAction.WasPressedThisFrame() && _dialogoAtual != null)
         {
             ProximaLinha();
         }

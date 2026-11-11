@@ -459,6 +459,7 @@ MonoBehaviour:
   _caixaDoDialogo: {fileID: 856378589}
   _personagem: {fileID: 305910563}
   _formatoDoTexto: {fileID: 1134630969}
+  _inputActions: {fileID: -944628639613478452, guid: cf0a81393ad3ba24697e07afbc801266, type: 3}
   _dialogoTeste: {fileID: 11400000, guid: fd7ee5a360949e14684ef212b88c8d86, type: 2}
 --- !u!1 &745213402
 GameObject:

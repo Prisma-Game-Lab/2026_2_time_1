@@ -2000,7 +2000,8 @@ MonoBehaviour:
   _caixaDoDialogo: {fileID: 187027917}
   _personagem: {fileID: 1773833012}
   _formatoDoTexto: {fileID: 438671715}
-  _dialogoTeste: {fileID: 11400000, guid: fd7ee5a360949e14684ef212b88c8d86, type: 2}
+  _dialogoSequencia: {fileID: 0}
+  _inputActions: {fileID: -944628639613478452, guid: cf0a81393ad3ba24697e07afbc801266, type: 3}
 --- !u!1 &1773833011
 GameObject:
   m_ObjectHideFlags: 0
