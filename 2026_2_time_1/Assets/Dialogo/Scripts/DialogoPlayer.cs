@@ -7,6 +7,16 @@ using UnityEngine.InputSystem;
 
 public class DialogoPlayer : MonoBehaviour
 {
+    // O DialogoPlayer ativo na cena. Qualquer script lê com DialogoPlayer.Current; só esta classe altera
+    public static DialogoPlayer Current { get; private set; }
+
+    // Existe um diálogo aberto agora?
+    public static bool IsOpen => Current != null && Current._dialogoAtual != null;
+
+    // O clique deste frame pertence ao diálogo? Verdadeiro enquanto o diálogo está aberto
+    // E também no frame exato em que ele abriu ou fechou: aquele clique já foi usado
+    public static bool BloqueiaCliques => IsOpen || (Current != null && Current.MudouNesteFrame);
+
     [Header("UI")]
     [SerializeField] private GameObject _caixaDoDialogo;
     [SerializeField] private TMP_Text _personagem;
@@ -21,6 +31,11 @@ public class DialogoPlayer : MonoBehaviour
     private DialogoSequencia _dialogoAtual;
     private int _linhaIndice;
     private InputAction _clickAction;
+
+    // Número do frame (Time.frameCount) em que o diálogo abriu ou fechou pela última vez
+    private int _frameDaUltimaMudanca = -1;
+
+    private bool MudouNesteFrame => _frameDaUltimaMudanca == Time.frameCount;
 
     private void Awake()
     {
@@ -40,9 +55,20 @@ public class DialogoPlayer : MonoBehaviour
 
     private void OnEnable()
     {
+        Current = this;
+
         // Só LIGA a ação. Nunca a desligamos em OnDisable: o mapa "Player" é compartilhado com
         // PointAndClick, PlayerController, Inventory e InspectionManager
         _clickAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        // Só limpa a referência se ela ainda aponta para este objeto
+        if (Current == this)
+        {
+            Current = null;
+        }
     }
 
     private void Update()
@@ -52,11 +78,11 @@ public class DialogoPlayer : MonoBehaviour
             DialogoIniciar(_dialogoTeste);
         }
 
-        else if (_clickAction.WasPressedThisFrame() && _dialogoAtual != null)
+        // Ignora o clique do frame em que o diálogo abriu: ele já foi usado para abrir
+        else if (_clickAction.WasPressedThisFrame() && _dialogoAtual != null && !MudouNesteFrame)
         {
             ProximaLinha();
         }
-
     }
 
     public void DialogoIniciar (DialogoSequencia dialogo)
@@ -68,6 +94,7 @@ public class DialogoPlayer : MonoBehaviour
 
         _dialogoAtual = dialogo;
         _linhaIndice = 0;
+        _frameDaUltimaMudanca = Time.frameCount;
 
         _caixaDoDialogo.SetActive(true);
         MostrarLinhaAtual();
@@ -98,5 +125,6 @@ public class DialogoPlayer : MonoBehaviour
     {
         _caixaDoDialogo.SetActive(false);
         _dialogoAtual = null;
+        _frameDaUltimaMudanca = Time.frameCount;
     }
 }
