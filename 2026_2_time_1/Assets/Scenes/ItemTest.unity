@@ -2000,6 +2000,8 @@ MonoBehaviour:
   _caixaDoDialogo: {fileID: 187027917}
   _personagem: {fileID: 1773833012}
   _formatoDoTexto: {fileID: 438671715}
+  _indicador: {fileID: 1307799120}
+  _caracteresPorSegundo: 40
   _inputActions: {fileID: -944628639613478452, guid: cf0a81393ad3ba24697e07afbc801266, type: 3}
 --- !u!1 &1773833011
 GameObject:

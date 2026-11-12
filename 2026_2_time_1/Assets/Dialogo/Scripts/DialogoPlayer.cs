@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
@@ -21,6 +22,12 @@ public class DialogoPlayer : MonoBehaviour
     [SerializeField] private GameObject _caixaDoDialogo;
     [SerializeField] private TMP_Text _personagem;
     [SerializeField] private TMP_Text _formatoDoTexto;
+    // Seta animada que avisa "clique para continuar". Só aparece quando a linha terminou de ser escrita
+    [SerializeField] private GameObject _indicador;
+
+    [Header("Efeito de máquina de escrever")]
+    [Tooltip("Quantos caracteres aparecem por segundo")]
+    [SerializeField, Min(1f)] private float _caracteresPorSegundo = 40f;
 
     [Header("Input")]
     [SerializeField] private InputActionAsset _inputActions;
@@ -28,6 +35,11 @@ public class DialogoPlayer : MonoBehaviour
     private DialogoSequencia _dialogoAtual;
     private int _linhaIndice;
     private InputAction _clickAction;
+
+    // A corrotina que está escrevendo a linha atual. null = a linha já está completa
+    private Coroutine _digitacao;
+
+    private bool EstaDigitando => _digitacao != null;
 
     // Número do frame (Time.frameCount) em que o diálogo abriu ou fechou pela última vez
     private int _frameDaUltimaMudanca = -1;
@@ -66,12 +78,31 @@ public class DialogoPlayer : MonoBehaviour
         {
             Current = null;
         }
+
+        // Unity para as corrotinas quando o objeto é desativado; esquecemos a referência para não ficar "digitando" para sempre
+        PararDigitacao();
     }
 
     private void Update()
     {
         // Ignora o clique do frame em que o diálogo abriu: ele já foi usado para abrir
-        if (_clickAction.WasPressedThisFrame() && _dialogoAtual != null && !MudouNesteFrame)
+        if (!_clickAction.WasPressedThisFrame() || _dialogoAtual == null || MudouNesteFrame)
+        {
+            return;
+        }
+
+        // Jogo pausado (Time.timeScale = 0, ver PauseAudio): o clique é do menu de pausa, não do diálogo
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
+        // Primeiro clique: completa a linha que ainda está sendo escrita. Próximo clique: avança
+        if (EstaDigitando)
+        {
+            CompletarLinha();
+        }
+        else
         {
             ProximaLinha();
         }
@@ -111,10 +142,64 @@ public class DialogoPlayer : MonoBehaviour
 
         _personagem.text = linha.Personagem;
         _formatoDoTexto.text = linha.Texto;
+
+        // Começa com o texto inteiro invisível e deixa a corrotina revelá-lo aos poucos
+        PararDigitacao();
+        _formatoDoTexto.maxVisibleCharacters = 0;
+        MostrarIndicador(false);
+        _digitacao = StartCoroutine(Digitar());
+    }
+
+    // Corrotina: roda um pouco a cada frame, continuando de onde parou depois de cada "yield return null"
+    private IEnumerator Digitar()
+    {
+        // Gera a malha agora para saber quantos caracteres VISÍVEIS a linha tem (tags como <b> não contam)
+        _formatoDoTexto.ForceMeshUpdate();
+        int total = _formatoDoTexto.textInfo.characterCount;
+
+        float visiveis = 0f;
+        while (visiveis < total)
+        {
+            // Time.deltaTime: a escrita para junto com o jogo quando ele é pausado
+            visiveis += _caracteresPorSegundo * Time.deltaTime;
+            _formatoDoTexto.maxVisibleCharacters = Mathf.Min((int)visiveis, total);
+            yield return null;
+        }
+
+        _digitacao = null;
+        CompletarLinha();
+    }
+
+    private void CompletarLinha()
+    {
+        PararDigitacao();
+        // Valor alto o bastante para mostrar qualquer linha inteira
+        _formatoDoTexto.maxVisibleCharacters = int.MaxValue;
+        MostrarIndicador(true);
+    }
+
+    private void PararDigitacao()
+    {
+        if (_digitacao != null)
+        {
+            StopCoroutine(_digitacao);
+            _digitacao = null;
+        }
+    }
+
+    private void MostrarIndicador(bool mostrar)
+    {
+        // O indicador é opcional: se o campo estiver vazio, o diálogo funciona sem ele
+        if (_indicador != null)
+        {
+            _indicador.SetActive(mostrar);
+        }
     }
 
     private void DialogoTerminar()
     {
+        PararDigitacao();
+        MostrarIndicador(false);
         _caixaDoDialogo.SetActive(false);
         _dialogoAtual = null;
         _frameDaUltimaMudanca = Time.frameCount;
