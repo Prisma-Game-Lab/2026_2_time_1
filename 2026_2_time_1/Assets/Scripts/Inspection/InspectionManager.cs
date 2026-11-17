@@ -48,7 +48,8 @@ public class InspectionManager : MonoBehaviour
 
     private void Update()
     {
-        if (CurrentView != null && cancelAction.WasPressedThisFrame())
+        // The memory map opens on top of an inspect view, so Cancel closes the map first
+        if (CurrentView != null && cancelAction.WasPressedThisFrame() && !MemoryMapUI.IsOpen)
             Close();
     }
 

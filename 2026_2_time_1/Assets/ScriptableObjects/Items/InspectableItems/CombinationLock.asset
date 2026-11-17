@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CombinationLock
   m_EditorClassIdentifier: 
   itemName: CombinationLock
-  sprite: {fileID: 21300000, guid: e3c892ac7d5375b40a37cf1b47f3b468, type: 3}
+  sprite: {fileID: 21300000, guid: 5cbc156c5f18a014fbe1cabe9f0fac0f, type: 3}
   inspectView: {fileID: 4856516070793725193, guid: fb062b544e37a7c4faa87e16af51a44a, type: 3}

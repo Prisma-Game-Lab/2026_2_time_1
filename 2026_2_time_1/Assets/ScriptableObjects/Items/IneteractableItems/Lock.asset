@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Lock
   m_EditorClassIdentifier: 
   itemName: Lock
-  sprite: {fileID: 21300000, guid: 8835d5440faee8c409e7a3b8a8f4bcfc, type: 3}
+  sprite: {fileID: 21300000, guid: 1571384c678f8ce44a25584d0633c9bc, type: 3}
   requiredItem: {fileID: 11400000, guid: fa459dfaf979c3544bccc60a15682e36, type: 2}

@@ -41,7 +41,7 @@ public class PointAndClick : MonoBehaviour
         if (GameManager.Instance != null && GameManager.Instance.IsTransitioning)
             return;
 
-        if (InspectionManager.IsOpen)
+        if (InspectionManager.IsOpen || MemoryMapUI.IsOpen)
             return;
 
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())

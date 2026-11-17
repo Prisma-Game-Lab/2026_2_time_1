@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: 
   itemName: Key
-  sprite: {fileID: 21300000, guid: 7357d19e1344eb84e89ec70b9fd2807f, type: 3}
+  sprite: {fileID: 21300000, guid: a4b1556cfb7a9d84fbffcc24bb59d575, type: 3}
   destroyOnUse: 1
