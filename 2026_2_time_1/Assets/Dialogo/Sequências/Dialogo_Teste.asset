@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Dialogo_Teste
   m_EditorClassIdentifier: 
   _linhas:
-  - _personagem: Protagonista
-    _texto: Primeiro dialogo
-  - _personagem: "Irm\xE3o do protagonista"
-    _texto: "Segundo di\xE1logo"
-  - _personagem: Protagonista
-    _texto: Terceiro Dialogo
+  - _personagem: 
+    _texto: Testando o efeito do texto aparecendo na tela
+  - _personagem: 
+    _texto: Muito legal
+  - _personagem: 
+    _texto: "Perceba que o indicador s\xF3 aparece no fim da fala"

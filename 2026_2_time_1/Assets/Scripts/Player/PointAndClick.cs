@@ -44,6 +44,10 @@ public class PointAndClick : MonoBehaviour
         if (InspectionManager.IsOpen)
             return;
 
+        // While a dialogue is open (or it opened/closed this very frame), the click belongs to the dialogue
+        if (DialogoPlayer.BloqueiaCliques)
+            return;
+
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
