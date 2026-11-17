@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tabuleiro
   m_EditorClassIdentifier: 
   width: 4
-  height: 3
+  height: 4
   cells:
   - tile: {fileID: 11400000, guid: 2af5ff51367882540847ad219220bb4b, type: 2}
     rotation: 0
@@ -60,6 +60,22 @@ MonoBehaviour:
     fixedPosition: 0
     fixedRotation: 0
   - tile: {fileID: 11400000, guid: 2af5ff51367882540847ad219220bb4b, type: 2}
+    rotation: 0
+    fixedPosition: 0
+    fixedRotation: 0
+  - tile: {fileID: 11400000, guid: 2af5ff51367882540847ad219220bb4b, type: 2}
+    rotation: 0
+    fixedPosition: 0
+    fixedRotation: 0
+  - tile: {fileID: 11400000, guid: a838cfda6b830414fa87aef93d5b4c7a, type: 2}
+    rotation: 0
+    fixedPosition: 0
+    fixedRotation: 0
+  - tile: {fileID: 11400000, guid: 7d10e97148b15374b972247418a25d57, type: 2}
+    rotation: 0
+    fixedPosition: 0
+    fixedRotation: 0
+  - tile: {fileID: 11400000, guid: c84b1d3d5a799cb41b5c46772d89820f, type: 2}
     rotation: 0
     fixedPosition: 0
     fixedRotation: 0

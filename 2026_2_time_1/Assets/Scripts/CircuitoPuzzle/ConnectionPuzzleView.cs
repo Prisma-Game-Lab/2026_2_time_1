@@ -359,6 +359,8 @@ public class ConnectionPuzzleView : InspectView
             cells[draggingIndex].SetTileVisible(true);
 
         draggingIndex = -1;
+
+
         if (dragGhost != null)
             dragGhost.gameObject.SetActive(false);
     }
