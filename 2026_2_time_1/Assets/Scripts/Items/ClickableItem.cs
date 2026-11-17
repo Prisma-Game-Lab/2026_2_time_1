@@ -17,6 +17,10 @@ public class ClickableItem : Item
     {
         source.OnInteracted.Invoke();
 
+        // No sound without an AudioManager in the scene, or without a sound assigned
+        if (AudioManager.instance == null || clickedObjectSound.IsNull)
+            return;
+
         if (soundType == SoundType.Piano)
         {
             if (source.TryGetComponent<PianoKey>(out var pianoKey))
@@ -35,7 +39,7 @@ public class ClickableItem : Item
             }
         }
         else
-        {
+        {  
             AudioManager.instance.PlayOneShot(
                 clickedObjectSound,
                 source.transform.position

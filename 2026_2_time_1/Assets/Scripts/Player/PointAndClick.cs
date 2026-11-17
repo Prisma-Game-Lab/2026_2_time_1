@@ -41,7 +41,7 @@ public class PointAndClick : MonoBehaviour
         if (GameManager.Instance != null && GameManager.Instance.IsTransitioning)
             return;
 
-        if (InspectionManager.IsOpen)
+        if (InspectionManager.IsOpen || MemoryMapUI.IsOpen)
             return;
 
         // While a dialogue is open (or it opened/closed this very frame), the click belongs to the dialogue

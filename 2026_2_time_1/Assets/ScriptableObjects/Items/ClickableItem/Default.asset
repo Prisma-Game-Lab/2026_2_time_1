@@ -14,3 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Default
   sprite: {fileID: 0}
+  soundType: 0
+  clickedObjectSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

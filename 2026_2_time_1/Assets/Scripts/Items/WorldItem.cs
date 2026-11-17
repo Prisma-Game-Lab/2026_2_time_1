@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +19,8 @@ public class WorldItem : MonoBehaviour
 
     public Item Item => item;
     public UnityEvent OnInteracted => onInteracted;
+    // Every click, even when the interaction doesn't succeed (e.g. an unsolved lock)
+    public event Action Clicked;
     public SpriteRenderer SpriteRenderer => spriteRenderer != null ? spriteRenderer : spriteRenderer = GetComponent<SpriteRenderer>();
 
     private void Awake()
@@ -50,6 +53,8 @@ public class WorldItem : MonoBehaviour
 #endif
     public void Interact()
     {
+        Clicked?.Invoke();
+
         if (item == null)
         {
             Debug.LogWarning($"[WorldItem] '{name}' has no Item assigned.");

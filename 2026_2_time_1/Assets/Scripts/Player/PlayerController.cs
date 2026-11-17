@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         }
 
         bool isTransitioning = GameManager.Instance != null && GameManager.Instance.IsTransitioning;
-        if (!isTransitioning && !InspectionManager.IsOpen)
+        if (!isTransitioning && !InspectionManager.IsOpen && !MemoryMapUI.IsOpen)
         {
             if (rotateLeftAction.WasPressedThisFrame())
                 targetYaw -= rotationAngle;
