@@ -160,7 +160,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.3, y: 3.24, z: 0.05}
+  m_Size: {x: 2.11, y: 3.2, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &16057459
 MonoBehaviour:
@@ -220,8 +220,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d78fa396c16a8874d9f21f40b32791b1, type: 3}
-  m_Color: {r: 1, g: 0.880132, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6c25820286b5e6c438ef22387b1a862e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogo: {fileID: 11400000, guid: e6fadd48529363f4b8ecd8f5ef7d0958, type: 2}
+  _quando: 0
 --- !u!1001 &696976855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1789,6 +1790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogo: {fileID: 11400000, guid: e17d195ce4cb6f140a9f56cc218037b9, type: 2}
+  _quando: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,6 +2885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogo: {fileID: 11400000, guid: ddb0338efecdcdc41a4f7f39f44ed828, type: 2}
+  _quando: 0
 --- !u!1 &1869151298
 GameObject:
   m_ObjectHideFlags: 0
