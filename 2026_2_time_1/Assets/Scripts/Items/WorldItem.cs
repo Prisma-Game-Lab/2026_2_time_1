@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -61,6 +62,17 @@ public class WorldItem : MonoBehaviour
             return;
         }
 
+        if (DialogoPlayer.IsOpen)
+            StartCoroutine(ClickAfterDialogue());
+        else
+            item.OnClick(this);
+    }
+
+    // A click that started a dialogue opens the item (inspect view, pick up...) only once the dialogue ends
+    private IEnumerator ClickAfterDialogue()
+    {
+        while (DialogoPlayer.IsOpen)
+            yield return null;
         item.OnClick(this);
     }
 
