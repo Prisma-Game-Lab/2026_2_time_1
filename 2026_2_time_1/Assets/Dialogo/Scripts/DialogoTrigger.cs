@@ -19,6 +19,10 @@ public class DialogoTrigger : MonoBehaviour
     // Se precisar renomear, use [FormerlySerializedAs("nomeAntigo")] (using UnityEngine.Serialization).
     [SerializeField] private DialogoSequencia _dialogo;
 
+    // AoInteragir: quando o OnInteracted dispara (padrão). AoClicar: em todo clique, mesmo sem resolver o item
+    public enum Quando { AoInteragir, AoClicar }
+    [SerializeField] private Quando _quando = Quando.AoInteragir;
+
     private WorldItem _worldItem;
 
     private void Awake()
@@ -34,16 +38,20 @@ public class DialogoTrigger : MonoBehaviour
     private void OnEnable()
     {
         // Inscreve-se no evento do WorldItem pelo código: o designer não precisa configurar nada no Inspector
-        _worldItem.OnInteracted.AddListener(IniciarDialogo);
+        if (_quando == Quando.AoClicar)
+            _worldItem.Clicked += IniciarDialogo;
+        else
+            _worldItem.OnInteracted.AddListener(IniciarDialogo);
     }
 
     private void OnDisable()
     {
         // Sempre desfazer a inscrição feita em OnEnable, para o evento não chamar um objeto desligado ou destruído
+        _worldItem.Clicked -= IniciarDialogo;
         _worldItem.OnInteracted.RemoveListener(IniciarDialogo);
     }
 
-    private void IniciarDialogo()
+    public void IniciarDialogo()
     {
         if (DialogoPlayer.Current == null)
         {
