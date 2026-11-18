@@ -199,6 +199,7 @@ public class Inventory : MonoBehaviour
             return;
 
         draggingIndex = index;
+        GameCursor.Holding = true;
         dragIcon.sprite = item.Sprite;
         dragIcon.rectTransform.sizeDelta = slotIcons[index].rectTransform.rect.size;
         dragIcon.transform.SetAsLastSibling();
@@ -255,6 +256,8 @@ public class Inventory : MonoBehaviour
 
     private void CancelDrag()
     {
+        if (draggingIndex >= 0)
+            GameCursor.Holding = false;
         draggingIndex = -1;
         if (dragIcon != null)
             dragIcon.gameObject.SetActive(false);

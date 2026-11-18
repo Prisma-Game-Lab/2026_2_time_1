@@ -33,27 +33,50 @@ public class PointAndClick : MonoBehaviour
         playerMap.Disable();
     }
 
+    public Vector2 PointerPosition => pointAction.ReadValue<Vector2>();
+
+    public bool IsBlocked =>
+        (GameManager.Instance != null && GameManager.Instance.IsTransitioning)
+        || InspectionManager.IsOpen
+        || MemoryMapUI.IsOpen
+        || DialogoPlayer.BloqueiaCliques
+        || (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject());
+
     private void Update()
     {
-        if (!clickAction.WasPressedThisFrame())
+        if (!clickAction.WasPressedThisFrame() || IsBlocked)
             return;
 
-        if (GameManager.Instance != null && GameManager.Instance.IsTransitioning)
-            return;
-
-        if (InspectionManager.IsOpen || MemoryMapUI.IsOpen)
-            return;
-
-        // While a dialogue is open (or it opened/closed this very frame), the click belongs to the dialogue
-        if (DialogoPlayer.BloqueiaCliques)
-            return;
-
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-            return;
-
-        WorldItem worldItem = GetItemAtScreenPoint(pointAction.ReadValue<Vector2>());
+        WorldItem worldItem = GetItemAtScreenPoint(PointerPosition);
         if (worldItem != null)
+        {
             worldItem.Interact();
+            return;
+        }
+
+        Door door = GetDoorAtScreenPoint(PointerPosition);
+        if (door != null)
+            door.Open();
+    }
+
+    public Door GetDoorAtScreenPoint(Vector2 screenPoint)
+    {
+        Camera cam = Camera.main;
+        if (cam == null)
+            return null;
+
+        Door nearest = null;
+        float nearestDistance = float.MaxValue;
+        foreach (RaycastHit hit in Physics.RaycastAll(cam.ScreenPointToRay(screenPoint), cam.farClipPlane, interactableLayers, QueryTriggerInteraction.Collide))
+        {
+            Door door = hit.collider.GetComponentInParent<Door>();
+            if (door != null && hit.distance < nearestDistance)
+            {
+                nearest = door;
+                nearestDistance = hit.distance;
+            }
+        }
+        return nearest;
     }
 
     public WorldItem GetItemAtScreenPoint(Vector2 screenPoint)

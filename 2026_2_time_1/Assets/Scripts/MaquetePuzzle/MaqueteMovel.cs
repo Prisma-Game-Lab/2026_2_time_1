@@ -25,6 +25,7 @@ public class MaqueteMovel : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             return;
 
         arrastando = true;
+        GameCursor.Holding = true;
         offset = rect.position - ponto;
         rect.SetAsLastSibling();
     }
@@ -39,6 +40,7 @@ public class MaqueteMovel : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             return;
 
         arrastando = false;
+        GameCursor.Holding = false;
         Maquete.Soltar(Index);
     }
 

@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroup))]
 public class MemoryMapArea : MonoBehaviour
 {
-    [Tooltip("Scene names where the map opens zoomed into this area (e.g. Memory1).")]
     [SerializeField] private string[] scenes = new string[0];
 
     private CanvasGroup group;

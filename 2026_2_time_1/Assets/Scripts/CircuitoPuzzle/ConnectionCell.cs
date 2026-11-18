@@ -90,6 +90,8 @@ public class ConnectionCell : MonoBehaviour, IPointerDownHandler, IPointerClickH
     {
         dragStarted = true;
         draggingTile = View != null && eventData.button == PointerEventData.InputButton.Left && View.BeginDrag(Index, eventData);
+        if (draggingTile)
+            GameCursor.Holding = true;
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -102,6 +104,7 @@ public class ConnectionCell : MonoBehaviour, IPointerDownHandler, IPointerClickH
             return;
 
         draggingTile = false;
+        GameCursor.Holding = false;
         View.EndDrag(Index, eventData);
     }
 }

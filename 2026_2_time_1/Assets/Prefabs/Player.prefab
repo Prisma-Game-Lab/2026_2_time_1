@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5590871857959417340}
   - component: {fileID: 5478093780505493635}
   - component: {fileID: 6476179112618283329}
+  - component: {fileID: 8982543085027254536}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -64,3 +65,27 @@ MonoBehaviour:
   inputActions: {fileID: -944628639613478452, guid: cf0a81393ad3ba24697e07afbc801266, type: 3}
   rotationAngle: 90
   rotationDuration: 0.25
+--- !u!114 &8982543085027254536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8701880885125515299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bc28f4426df7d4497a3289b5fcb513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normal:
+    texture: {fileID: 2800000, guid: d2d596054c3d0b444a9e7a56e6e3c57f, type: 3}
+    hotspot: {x: 0, y: 0}
+  hover:
+    texture: {fileID: 2800000, guid: 8851a19d763156a4aa5d09f6346955a2, type: 3}
+    hotspot: {x: 0, y: 0}
+  holding:
+    texture: {fileID: 2800000, guid: 5350e9d7f340c87499c039a22e0cb044, type: 3}
+    hotspot: {x: 0, y: 0}
+  door:
+    texture: {fileID: 2800000, guid: 7340400b19fa78d45ae74b90ac7a24eb, type: 3}
+    hotspot: {x: 0, y: 0}

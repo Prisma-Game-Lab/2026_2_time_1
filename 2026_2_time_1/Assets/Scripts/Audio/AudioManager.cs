@@ -156,7 +156,7 @@ public class AudioManager : MonoBehaviour
         if (!pianoInstance.isValid())
         {
             Debug.LogError(
-                $"FMOD failed to create piano event: {pianoEvent.Path}"
+                $"FMOD failed to create piano event: {pianoEvent}"
             );
             return;
         }
