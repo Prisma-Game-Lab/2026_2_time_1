@@ -404,13 +404,8 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Desktop/Master
-  - Desktop/Master
   Banks:
   - Desktop/Ambience
-  - Desktop/Ambience
-  - Desktop/MX
-  - Desktop/Piano
-  - Desktop/SFX
   - Desktop/SFX
   - MX
   - Piano
