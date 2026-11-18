@@ -1079,7 +1079,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7491552733969058040, guid: 39d3d55eead88db42bfccd4f428a0ff2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1815056386}
   m_SourcePrefab: {fileID: 100100000, guid: 39d3d55eead88db42bfccd4f428a0ff2, type: 3}
 --- !u!4 &696976856 stripped
 Transform:
@@ -1931,7 +1934,7 @@ MonoBehaviour:
   _caixaDoDialogo: {fileID: 1869151298}
   _personagem: {fileID: 1140001863}
   _formatoDoTexto: {fileID: 1700308080}
-  _indicador: {fileID: 0}
+  _indicador: {fileID: 612051428}
   _caracteresPorSegundo: 40
   _inputActions: {fileID: -944628639613478452, guid: cf0a81393ad3ba24697e07afbc801266, type: 3}
 --- !u!1 &1083737885 stripped
@@ -2867,6 +2870,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7491552733969058040, guid: 39d3d55eead88db42bfccd4f428a0ff2, type: 3}
   m_PrefabInstance: {fileID: 696976855}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1815056386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815056385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399bb2e5fc8e4d34b2dae7474141074a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogo: {fileID: 11400000, guid: ddb0338efecdcdc41a4f7f39f44ed828, type: 2}
 --- !u!1 &1869151298
 GameObject:
   m_ObjectHideFlags: 0
@@ -2898,14 +2914,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.103773594, g: 0.1023051, b: 0.1023051, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: eddb4218ba90a9b41bdc60d90bb5494c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
