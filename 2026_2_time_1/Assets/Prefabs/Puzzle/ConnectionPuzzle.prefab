@@ -140,6 +140,7 @@ MonoBehaviour:
   poweredColor: {r: 1, g: 0.85, b: 0.45, a: 1}
   rotationSpeed: 720
   completeDelay: 0.8
+  solvedStateId: 
   onTileRotated:
     m_PersistentCalls:
       m_Calls: []
@@ -162,6 +163,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: maquete
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3332376913157791905}
+        m_TargetAssemblyTypeName: WorldStateSetter, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: piano
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &3332376913157791905

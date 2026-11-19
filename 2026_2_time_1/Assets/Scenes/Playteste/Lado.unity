@@ -622,7 +622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6394577916276525667, guid: 0b3cf498deb12ab4895f07d616abb68e, type: 3}
       propertyPath: sceneName
-      value: Maquete
+      value: piano
       objectReference: {fileID: 0}
     - target: {fileID: 8158527770017490507, guid: 0b3cf498deb12ab4895f07d616abb68e, type: 3}
       propertyPath: m_Size.x
