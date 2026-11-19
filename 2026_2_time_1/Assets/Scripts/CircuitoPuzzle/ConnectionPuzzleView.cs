@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
 public class ConnectionPuzzleView : InspectView
 {
     [SerializeField] private ConnectionPuzzleLayout layout;
@@ -23,17 +22,17 @@ public class ConnectionPuzzleView : InspectView
 
     [SerializeField] private float completeDelay = 0.8f;
 
+    [Header("Estado salvo")]
+    [SerializeField] private string solvedStateId;
     [Header("Events (Fmod aqui)")]
     [SerializeField] private UnityEvent onTileRotated = new UnityEvent();
     [SerializeField] private UnityEvent onTilesSwapped = new UnityEvent();
     [SerializeField] private UnityEvent onTilePlaced = new UnityEvent();
     [SerializeField] private UnityEvent onSolved = new UnityEvent();
-
     private ConnectionPuzzleState state;
     private ConnectionCell[] cells;
     private bool[] powered;
     private readonly Queue<int> floodQueue = new Queue<int>();
-
     private Image dragGhost;
     private int draggingIndex = -1;
 
@@ -47,7 +46,6 @@ public class ConnectionPuzzleView : InspectView
     {
         completeOn = CompleteMode.WhenSolved;
     }
-
     protected override void OnOpened()
     {
         if (layout == null)
@@ -63,13 +61,15 @@ public class ConnectionPuzzleView : InspectView
             board = (RectTransform)transform;
 
         GameObject owner = Source != null ? Source.gameObject : gameObject;
-        state = ConnectionPuzzleState.GetOrCreate(owner, layout);
+        string saveKey = $"{owner.scene.name}/{owner.name}/{layout.name}";
+        state = ConnectionPuzzleState.GetOrCreate(owner, layout, saveKey);
+        if (WorldState.Has(solvedStateId))
+            state.IsSolved = true;
 
         BuildBoard();
         CreateDragGhost();
         Refresh(instant: true);
     }
-
     protected override void OnClosed()
     {
         CancelDrag();
@@ -80,7 +80,6 @@ public class ConnectionPuzzleView : InspectView
             Complete();
         }
     }
-
     private void Update()
     {
         if (!waitingToComplete)
@@ -190,6 +189,12 @@ public class ConnectionPuzzleView : InspectView
     {
         state.IsSolved = true;
         CancelDrag();
+
+        if (!string.IsNullOrEmpty(solvedStateId))
+            WorldState.Set(solvedStateId);
+        else
+            Debug.LogWarning($"[ConnectionPuzzleView] '{name}' was solved but has no Solved State Id, so no other scene will react.");
+
         onSolved.Invoke();
 
         waitingToComplete = true;

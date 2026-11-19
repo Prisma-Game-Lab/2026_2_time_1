@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PuzzleItem
   m_EditorClassIdentifier: 
   itemName: 
-  sprite: {fileID: 21300000, guid: fb7599a542044f542ac3d73c5d6f0da9, type: 3}
+  sprite: {fileID: 0}
   inspectView: {fileID: 4509472354510467151, guid: ebb67026c76458546bd42e7af1249dc5, type: 3}

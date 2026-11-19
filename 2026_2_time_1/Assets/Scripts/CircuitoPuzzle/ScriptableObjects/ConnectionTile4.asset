@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d6ca3f17f127441937e96327a18558, type: 3}
   m_Name: ConnectionTile4
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: da682b64bd72f7f42a5257185f2f790d, type: 3}
-  poweredSprite: {fileID: 21300000, guid: da682b64bd72f7f42a5257185f2f790d, type: 3}
+  sprite: {fileID: 21300000, guid: 93b1bdee61fd0ab4e808844e47075fbc, type: 3}
+  poweredSprite: {fileID: 21300000, guid: 93b1bdee61fd0ab4e808844e47075fbc, type: 3}
   openings: -1
