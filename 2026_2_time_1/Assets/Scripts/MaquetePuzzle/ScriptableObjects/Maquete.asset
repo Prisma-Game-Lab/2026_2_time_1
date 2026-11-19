@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Maquete
   m_EditorClassIdentifier: 
   itemName: 
-  sprite: {fileID: 21300000, guid: 75c83b7de996d1849bbd712b425ba3ba, type: 3}
+  sprite: {fileID: 0}
   inspectView: {fileID: 6801761330702408980, guid: 8b7eee2b8ed9fe2489d5e43c9b6a34e8, type: 3}

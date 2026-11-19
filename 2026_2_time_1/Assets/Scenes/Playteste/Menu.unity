@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314a018c63375f14b88834ae93fe14ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartScene: RECEBA
+  StartScene: RECEBA 1
 --- !u!4 &403257375
 Transform:
   m_ObjectHideFlags: 0
