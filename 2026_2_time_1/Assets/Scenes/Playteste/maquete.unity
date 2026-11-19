@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 174999344}
   - component: {fileID: 174999343}
   - component: {fileID: 174999342}
+  - component: {fileID: 174999346}
   m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Untagged
@@ -179,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86620e1ec33b33e47bae43be31da8f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: e26cd66e023d1f3408f683d490e0deef, type: 2}
   onInteracted:
     m_PersistentCalls:
       m_Calls: []
@@ -251,6 +252,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &174999346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174999341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399bb2e5fc8e4d34b2dae7474141074a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogo: {fileID: 11400000, guid: 77ba0055b05c31147afe946a7e803edb, type: 2}
+  _quando: 1
 --- !u!1 &191653435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,7 +1134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7274786705514084810, guid: 2cc1229c2ece547478fe1b8e17c213fc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1648,7 +1663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764249574063174587, guid: 7fc29d5eb06142a3de4f5a6b7c8d9ea5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

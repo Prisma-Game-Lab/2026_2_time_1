@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Chave
   m_EditorClassIdentifier: 
   title: Chave
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: a4b1556cfb7a9d84fbffcc24bb59d575, type: 3}
   lines:
   - key: 
-    text: "Uma chace. Onde ser\xE1 que isso abre...\n"
+    text: "Uma chave. Onde ser\xE1 que isso abre...\n"
     needsEntryFound: 0

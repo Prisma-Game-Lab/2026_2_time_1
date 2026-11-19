@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb18c4daf504192cd3e4f5a6b7c8d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entry: {fileID: 11400000, guid: a00d8a7732fc9bd4e9c084cc106a9884, type: 2}
+  entry: {fileID: 11400000, guid: c4983e2db456b3343ad6918dc10aa768, type: 2}
   title: {fileID: 4859000940712774646}
   description: {fileID: 4078115144946202517}
   image: {fileID: 5170576208206964995}
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb18c4daf504192cd3e4f5a6b7c8d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entry: {fileID: 11400000, guid: 80d3ae6fc17243b4ef5a6b7c8d9eafb6, type: 2}
+  entry: {fileID: 11400000, guid: 17b6a987170934b4299974abd096a37b, type: 2}
   title: {fileID: 3639651321880643766}
   description: {fileID: 5336945008434187741}
   image: {fileID: 4522156788791680489}
@@ -1352,7 +1352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6199331171644033745
 RectTransform:
   m_ObjectHideFlags: 0
