@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d57f2cf3c213342867d3c7174b592e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sequenciaCorreta: 01000000020000000300000004000000050000000600000007000000
+  _sequenciaCorreta: 01000000030000000700000004000000050000000600000002000000
   _objetoParaAparecer: {fileID: 853995511}
   _aoResolver:
     m_PersistentCalls:
@@ -2484,11 +2484,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5139391146821633754, guid: 39d3d55eead88db42bfccd4f428a0ff2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.22680007
       objectReference: {fileID: 0}
     - target: {fileID: 5139391146821633754, guid: 39d3d55eead88db42bfccd4f428a0ff2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.27024
       objectReference: {fileID: 0}
     - target: {fileID: 5139391146821633754, guid: 39d3d55eead88db42bfccd4f428a0ff2, type: 3}
       propertyPath: m_LocalPosition.x

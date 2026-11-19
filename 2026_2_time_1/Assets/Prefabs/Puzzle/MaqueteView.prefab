@@ -1028,8 +1028,8 @@ MonoBehaviour:
   memorySceneName: Memory2
   compartimentoFechado: {fileID: 4310242730807924305}
   compartimentoAberto: {fileID: 7475281842299025754}
-  botaoChave: {fileID: 6819289146642270187}
-  chave: {fileID: 11400000, guid: fa459dfaf979c3544bccc60a15682e36, type: 2}
+  botaoRecompensa: {fileID: 6819289146642270187}
+  recompensa: {fileID: 11400000, guid: a18342198be03de4fb680592548e872c, type: 2}
 --- !u!1 &7145450525732215929
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class MaqueteView : InspectView
 {
     public enum Simetria
     {
-        Nenhuma = 1, // a rotação tem que ser exata
-        Meia = 2,    // girar 180° dá no mesmo
+        Nenhuma = 1, // a rotação tem que ser exata 
+        Meia = 2,    // girar 180° dá no mesmo 
         Total = 4,   // qualquer rotação serve 
     }
 
@@ -35,8 +36,10 @@ public class MaqueteView : InspectView
     [Header("Compartimento")]
     [SerializeField] private GameObject compartimentoFechado;
     [SerializeField] private GameObject compartimentoAberto;
-    [SerializeField] private Button botaoChave;
-    [SerializeField] private CollectibleItem chave;
+    [FormerlySerializedAs("botaoChave")]
+    [SerializeField] private Button botaoRecompensa;
+    [FormerlySerializedAs("chave")]
+    [SerializeField] private Item recompensa;
 
     private MaquetePuzzle estado;
 
@@ -46,6 +49,7 @@ public class MaqueteView : InspectView
     {
         completeOn = CompleteMode.WhenSolved;
     }
+
     protected override void OnOpened()
     {
         estado = ObterEstado();
@@ -80,8 +84,12 @@ public class MaqueteView : InspectView
             Posicionar(i);
         }
 
-        if (botaoChave != null)
-            botaoChave.onClick.AddListener(PegarChave);
+        if (botaoRecompensa != null)
+        {
+            botaoRecompensa.onClick.AddListener(PegarRecompensa);
+            if (recompensa != null && recompensa.Sprite != null && botaoRecompensa.TryGetComponent(out Image imagem))
+                imagem.sprite = recompensa.Sprite;
+        }
 
         AtualizarCompartimento();
     }
@@ -123,6 +131,7 @@ public class MaqueteView : InspectView
         Posicionar(movel);
         Verificar();
     }
+
     public void Girar(int movel)
     {
         if (!PodeMexer || !MovelValido(movel))
@@ -140,9 +149,9 @@ public class MaqueteView : InspectView
 
         estado.Resolvido = true;
         AtualizarCompartimento();
-        // Dispara o OnInteracted do WorldItem da maquete
         Complete();
     }
+
     private bool EstaCorreto()
     {
         for (int i = 0; i < moveis.Length; i++)
@@ -158,28 +167,52 @@ public class MaqueteView : InspectView
         }
         return true;
     }
-    private void PegarChave()
+    private void PegarRecompensa()
     {
-        if (estado == null || !estado.Resolvido || estado.ChavePega)
+        if (estado == null || !estado.Resolvido || estado.RecompensaPega || recompensa == null)
             return;
 
-        if (Inventory.Current == null)
+        switch (recompensa)
         {
-            Debug.LogWarning("[MaqueteView] Não há Inventory na cena, não dá para pegar a chave.");
-            return;
-        }
+            case CollectibleItem coletavel:
+                if (Inventory.Current == null)
+                {
+                    Debug.LogWarning($"[MaqueteView] Não há Inventory na cena, não dá para pegar '{coletavel.ItemName}'.");
+                    return;
+                }
+                if (!Inventory.Current.AddItem(coletavel))
+                {
+                    Debug.Log($"[MaqueteView] Inventário cheio, não deu para pegar '{coletavel.ItemName}'.");
+                    return;
+                }
+                estado.RecompensaPega = true;
+                AtualizarCompartimento();
+                break;
+            case MemoryItem memoria:
+                if (MemoryManager.Current == null)
+                {
+                    Debug.LogWarning($"[MaqueteView] Não há MemoryManager na cena, não dá para entrar em '{memoria.MemorySceneName}'.");
+                    return;
+                }
+                if (GameManager.Instance != null && GameManager.Instance.IsTransitioning)
+                    return;
+                MemoryManager.Current.EnterMemory(memoria.MemorySceneName);
+                break;
 
-        if (Inventory.Current.AddItem(chave))
-        {
-            estado.ChavePega = true;
-            AtualizarCompartimento();
-        }
-        else
-        {
-            Debug.Log("[MaqueteView] Inventário cheio, não deu para pegar a chave.");
+            case InspectableItem inspecionavel:
+                if (InspectionManager.Current == null || inspecionavel.InspectView == null)
+                {
+                    Debug.LogWarning($"[MaqueteView] Não dá para abrir o zoom de '{inspecionavel.ItemName}'.");
+                    return;
+                }
+                InspectionManager.Current.Open(inspecionavel.InspectView, null);
+                break;
+
+            default:
+                Debug.LogWarning($"[MaqueteView] A maquete não sabe entregar um {recompensa.GetType().Name} ('{recompensa.ItemName}').");
+                break;
         }
     }
-
     private void AtualizarCompartimento()
     {
         bool aberto = estado.Resolvido;
@@ -188,10 +221,9 @@ public class MaqueteView : InspectView
             compartimentoFechado.SetActive(!aberto);
         if (compartimentoAberto != null)
             compartimentoAberto.SetActive(aberto);
-        if (botaoChave != null)
-            botaoChave.gameObject.SetActive(aberto && !estado.ChavePega);
+        if (botaoRecompensa != null)
+            botaoRecompensa.gameObject.SetActive(aberto && !estado.RecompensaPega);
     }
-
     private void Posicionar(int movel)
     {
         RectTransform peca = moveis[movel].peca;
@@ -202,7 +234,6 @@ public class MaqueteView : InspectView
         peca.position = slots[slot].position;
         peca.localRotation = Quaternion.Euler(0f, 0f, -90f * estado.RotacaoDosMoveis[movel]);
     }
-
     private int SlotMaisProximo(Vector3 posicaoDaPeca)
     {
         Vector3 peca = transform.InverseTransformPoint(posicaoDaPeca);
@@ -240,7 +271,6 @@ public class MaqueteView : InspectView
             Debug.LogWarning($"[MaqueteView] '{name}' foi aberto sem WorldItem de origem, o progresso não vai ser guardado.");
             return gameObject.AddComponent<MaquetePuzzle>();
         }
-
         if (!Source.TryGetComponent(out MaquetePuzzle puzzle))
             puzzle = Source.gameObject.AddComponent<MaquetePuzzle>();
         return puzzle;
@@ -265,8 +295,10 @@ public class MaqueteView : InspectView
                 Debug.LogWarning($"[MaqueteView] Dois móveis de '{name}' têm o slot {movel.slotCorreto} como resposta.");
         }
 
-        if (chave == null)
-            Debug.LogWarning($"[MaqueteView] '{name}' está sem a chave (CollectibleItem).");
+        if (recompensa == null)
+            Debug.LogWarning($"[MaqueteView] '{name}' está sem recompensa.");
+        else if (!(recompensa is CollectibleItem || recompensa is MemoryItem || recompensa is InspectableItem))
+            Debug.LogWarning($"[MaqueteView] A recompensa de '{name}' é um {recompensa.GetType().Name}, que a maquete não sabe entregar.");
         if (string.IsNullOrEmpty(memorySceneName))
             Debug.LogWarning($"[MaqueteView] '{name}' está sem o nome da cena de memória.");
     }
@@ -274,7 +306,6 @@ public class MaqueteView : InspectView
     {
         return slot >= 0 && slot < slots.Length;
     }
-
     private bool MovelValido(int movel)
     {
         return estado != null && movel >= 0 && movel < moveis.Length;
